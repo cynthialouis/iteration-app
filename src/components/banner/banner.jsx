@@ -6,15 +6,15 @@ class Banner extends Component {
     render() {
         return (
             <div>
-                <div className="banner flex-container">
-                    <img src={logo} alt="logo" className="logo flex-item"/>
-                    <Link to='/' className="flex-item">
+                <div className='banner flex-container'>
+                    <img src={logo} alt='logo' className='logo flex-item'/>
+                    <Link to='/' className='flex-item'>
                         <span>HOME</span>
                     </Link>
-                    <Link to='/' className="flex-item">
+                    <Link to='/' className='flex-item'>
                         <span>NEXT SPRINT</span>
                     </Link>
-                    <Link to='/' className="flex-item">
+                    <Link to='/admin' className='flex-item'>
                         <span>ADMIN</span>
                     </Link>
                 </div>
