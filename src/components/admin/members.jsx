@@ -4,10 +4,13 @@ import { Table } from 'reactstrap';
 import visibility from '../../images/visibility.svg';
 import bin from '../../images/bin.svg';
 
-
+/**
+ * Presentational component
+ */
 class Members extends Component {
     render() {
 
+        // Create new row in table for each member (from props).
         const members = this.props.allMembers.map(member =>
             <tr key={ member.id }>
                 <td> </td>

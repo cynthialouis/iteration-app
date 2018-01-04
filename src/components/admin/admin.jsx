@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Members from './members';
+import FetchAllMembers from '../members/fetch-all-members';
 
 class Admin extends Component {
 
@@ -8,26 +9,29 @@ class Admin extends Component {
         this.state = {
             members: [],
         };
+
+        // Necessary binding to make 'this' works in the callback.
+        this.getFetchedMembers = this.getFetchedMembers.bind(this);
     }
 
-    componentDidMount() {
-        fetch('http://127.0.0.1:8000/api/members')
-            .then(results => {
-                return results.json();
-            })
-            .then(data => {
-                let members = JSON.parse(data.members);
-                this.setState({
-                    members: members
-            });
-        });
-    }
+    /**
+     * Gets all members from FetchAllMembers component props
+     * in order to save them as state and pass them to the Members component.
+     * @param members
+     */
+    getFetchedMembers = (members) => {
+        this.setState({
+            members: members
+        })
+    };
+
 
     render() {
 
         return (
             <div className='members'>
-                <Members allMembers={ this.state.members }> </Members>
+                <FetchAllMembers fetchedMembers={ this.getFetchedMembers }/>
+                <Members allMembers={ this.state.members } />
             </div>
         );
     }
