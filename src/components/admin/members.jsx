@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
+import '../variables';
+import T from 'i18n-react';
 import visibility from '../../images/visibility.svg';
 import bin from '../../images/bin.svg';
 
@@ -30,14 +32,14 @@ class Members extends Component {
 
         return (
             <div>
-                <h3>Members</h3>
+                <h3>{ T.translate('members.title') }</h3>
 
                 <Table>
                     <thead>
                     <tr>
-                        <th>Team</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th>{ T.translate('members.team') }</th>
+                        <th>{ T.translate('members.name') }</th>
+                        <th>{ T.translate('members.email') }</th>
                         <th> </th>
                     </tr>
                     </thead>

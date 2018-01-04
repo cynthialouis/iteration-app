@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import '../variables';
+import T from 'i18n-react';
 import logo from '../../images/logo.svg';
 
 class Banner extends Component {
@@ -10,13 +12,13 @@ class Banner extends Component {
                 <div className='banner flex-container'>
                     <img src={logo} alt='logo' className='logo flex-item'/>
                     <Link to='/' className='flex-item'>
-                        <span>HOME</span>
+                        <span>{ T.translate('menu.home') }</span>
                     </Link>
                     <Link to='/' className='flex-item'>
-                        <span>NEXT SPRINT</span>
+                        <span>{ T.translate('menu.next_sprint') }</span>
                     </Link>
                     <Link to='/admin' className='flex-item'>
-                        <span>ADMIN</span>
+                        <span>{ T.translate('menu.admin') }</span>
                     </Link>
                 </div>
             </div>
