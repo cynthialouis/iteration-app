@@ -15,7 +15,7 @@ class Members extends Component {
         // Create new row in table for each member (from props).
         const members = this.props.allMembers.map(member =>
             <tr key={ member.id }>
-                <td> </td>
+                <td>{ member.team ? member.team.name : '' }</td>
                 <td>{ member.name }</td>
                 <td>{ member.email }</td>
                 <td>
