@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Members from './members';
-import FetchAllMembers from '../members/fetch-all-members';
+import FetchAllMembers from '../api/fetch-all-members';
 
 class Admin extends Component {
 
@@ -29,7 +29,7 @@ class Admin extends Component {
     render() {
 
         return (
-            <div className='members'>
+            <div>
                 <FetchAllMembers fetchedMembers={ this.getFetchedMembers }/>
                 <Members allMembers={ this.state.members } />
             </div>

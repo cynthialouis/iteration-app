@@ -9,6 +9,7 @@ T.setTexts({
         next_sprint: 'Next sprint',
     },
     members: {
+        add: 'Add new member',
         title: 'Members',
         team: 'Team',
         name: 'Name',

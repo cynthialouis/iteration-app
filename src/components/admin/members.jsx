@@ -33,6 +33,7 @@ class Members extends Component {
         return (
             <div>
                 <h3>{ T.translate('members.title') }</h3>
+                <Link to='/newmember'><span>{ T.translate('members.add') }</span></Link>
 
                 <Table>
                     <thead>
