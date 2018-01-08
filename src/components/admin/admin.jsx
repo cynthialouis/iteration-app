@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Members from './members';
+import MembersGrid from './members-grid';
 import FetchAllMembers from '../api/fetch-all-members';
 
 class Admin extends Component {
@@ -31,7 +31,7 @@ class Admin extends Component {
         return (
             <div>
                 <FetchAllMembers fetchedMembers={ this.getFetchedMembers }/>
-                <Members allMembers={ this.state.members } />
+                <MembersGrid allMembers={ this.state.members } />
             </div>
         );
     }

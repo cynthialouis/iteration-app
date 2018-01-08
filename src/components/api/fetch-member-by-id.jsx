@@ -3,7 +3,7 @@ import { Component } from 'react';
 /**
  * Container component
  */
-class FetchAllTeams extends Component {
+class FetchMemberById extends Component {
 
     /**
      * Lifecycle method : executed after the first render.
@@ -11,16 +11,16 @@ class FetchAllTeams extends Component {
     componentDidMount() {
         /**
          * Ajax request with fetch library
-         * Fetches all teams from our iteration-api
-         * and save them as fetchedTeams props to reuse in other components.
+         * Fetches one member by id from our iteration-api
+         * and save it as fetchedMember props to reuse in other components.
          */
-        fetch('http://127.0.0.1:8000/api/teams')
+        fetch(`http://127.0.0.1:8000/api/member/${this.props.memberId}`)
             .then(results => {
                 return results.json();
             })
             .then(data => {
-                let teams = JSON.parse(data.teams);
-                this.props.fetchedTeams(teams);
+                let member = JSON.parse(data.member);
+                this.props.fetchedMemberById(member);
             });
     }
 
@@ -31,4 +31,4 @@ class FetchAllTeams extends Component {
     }
 }
 
-export default FetchAllTeams;
+export default FetchMemberById;

@@ -8,7 +8,6 @@ import FetchAllTeams from '../api/fetch-all-teams';
  */
 class NewMemberForm extends Component {
 
-
     constructor() {
         super();
         this.state = {

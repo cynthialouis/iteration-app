@@ -9,7 +9,7 @@ import bin from '../../images/bin.svg';
 /**
  * Presentational component
  */
-class Members extends Component {
+class MembersGrid extends Component {
     render() {
 
         // Create new row in table for each member (from props).
@@ -19,8 +19,8 @@ class Members extends Component {
                 <td>{ member.name }</td>
                 <td>{ member.email }</td>
                 <td>
-                    <Link to='/'>
-                        <img src={ visibility } alt='remove' />
+                    <Link to={ `/member/${ member.id }` }>
+                        <img src={ visibility } alt='details' />
                     </Link>
                     <Link to='/'>
                         <img src={ bin } alt='remove' />
@@ -53,4 +53,4 @@ class Members extends Component {
     }
 }
 
-export default Members;
+export default MembersGrid;

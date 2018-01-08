@@ -3,6 +3,7 @@ import T from 'i18n-react';
 // Set variables
 
 T.setTexts({
+    submit: 'Valider',
     menu: {
         home: 'Home',
         admin: 'Admin',
