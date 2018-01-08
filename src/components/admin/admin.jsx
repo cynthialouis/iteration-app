@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import MembersGrid from './members-grid';
-import FetchAllMembers from '../api/fetch-all-members';
+import { fetchAllMembers } from '../api-actions/members';
 
+/**
+ * Component to display all members (TODO : and all projects).
+ */
 class Admin extends Component {
 
     constructor() {
@@ -9,28 +12,32 @@ class Admin extends Component {
         this.state = {
             members: [],
         };
-
-        // Necessary binding to make 'this' works in the callback.
-        this.getFetchedMembers = this.getFetchedMembers.bind(this);
     }
 
     /**
-     * Gets all members from FetchAllMembers component props
-     * in order to save them as state and pass them to the Members component.
-     * @param members
+     * Lifecycle method : executed after the first render.
      */
-    getFetchedMembers = (members) => {
-        this.setState({
-            members: members
-        })
-    };
+    componentDidMount() {
+        /**
+         * Fetches all members from our iteration-api and save them as state
+         * in order to pass them to the MembersGrid component.
+         */
+        fetchAllMembers()
+            .then((data) => {
+                this.setState({
+                    members: data
+                })
+            })
+            .catch((err) => {
+                console.error('err', err);
+            });
+    }
 
 
     render() {
 
         return (
             <div>
-                <FetchAllMembers fetchedMembers={ this.getFetchedMembers }/>
                 <MembersGrid allMembers={ this.state.members } />
             </div>
         );

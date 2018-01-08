@@ -4,6 +4,9 @@ import '../variables';
 import T from 'i18n-react';
 import logo from '../../images/logo.svg';
 
+/**
+ * Fixed top banner with navigation menu.
+ */
 class Banner extends Component {
     render() {
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../variables';
 import T from 'i18n-react';
-import FetchAllTeams from '../api/fetch-all-teams';
+import { fetchAllTeams } from '../api-actions/teams';
 
 /**
  * Component to add a new member to API.
@@ -16,7 +16,24 @@ class NewMemberForm extends Component {
 
         // Necessary bindings to make 'this' works in callbacks.
         this.addNewMember = this.addNewMember.bind(this);
-        this.getFetchedTeams = this.getFetchedTeams.bind(this);
+    }
+
+    /**
+     * Lifecycle method : executed after the first render.
+     */
+    componentDidMount() {
+        /**
+         * Fetches all teams from our iteration-api and save them as state to reuse.
+         */
+        fetchAllTeams()
+            .then((data) => {
+                this.setState({
+                    teams: data
+                })
+            })
+            .catch((err) => {
+                console.error('err', err);
+            });
     }
 
     /**
@@ -56,18 +73,6 @@ class NewMemberForm extends Component {
     }
 
 
-    /**
-     * Gets all teams from FetchAllMembers component props
-     * in order to save them as props and reuse them.
-     * @param teams
-     */
-    getFetchedTeams = (teams) => {
-        this.setState({
-            teams: teams
-        })
-    };
-
-
     render() {
 
         // Create a new select option for each team.
@@ -77,9 +82,6 @@ class NewMemberForm extends Component {
 
         return (
             <div>
-                {/* Just to fetch teams from api. No DOM emitted. */}
-                <FetchAllTeams fetchedTeams={ this.getFetchedTeams }/>
-
                 <form>
                     <label>{ T.translate('members.team') }</label>
                     <select>

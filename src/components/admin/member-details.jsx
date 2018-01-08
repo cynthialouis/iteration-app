@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import '../variables';
 import T from 'i18n-react';
-import FetchMemberById from '../api/fetch-member-by-id';
-import { updateMemberById } from '../api/members';
+import { fetchMemberById, updateMemberById } from '../api-actions/members';
 
-
+/**
+ * Component to edit a member.
+ */
 class MemberDetails extends Component {
 
-    constructor(props) {
+    constructor() {
         super();
         this.state = {
-            memberId: props.match.params.memberId,
             member: {},
         };
 
@@ -18,12 +18,29 @@ class MemberDetails extends Component {
         this.didSwitchParentObject = true;
 
         // Necessary binding to make 'this' works in the callback.
-        this.getFetchedMemberById = this.getFetchedMemberById.bind(this);
         this.submitUpdates = this.submitUpdates.bind(this);
     }
 
     /**
-     * Lifecycle method : called during Updating phase.
+     * Lifecycle method : executed after the first render.
+     */
+    componentDidMount() {
+        /**
+         * Fetches one member by its id from our iteration-api and save it as state to reuse.
+         */
+        fetchMemberById(this.props.match.params.memberId)
+            .then((data) => {
+                this.setState({
+                    member: data
+                })
+            })
+            .catch((err) => {
+                console.error('err', err);
+            });
+    }
+
+    /**
+     * Lifecycle method : called during Updating Phase.
      * Sets the inputs initial values.
      */
     componentDidUpdate ()
@@ -36,17 +53,6 @@ class MemberDetails extends Component {
             this.refs.emailInput.value = this.state.member.email || '';
         }
     }
-
-    /**
-     * Gets member from FetchMemberById component props
-     * and save it as state to reuse it.
-     * @param member
-     */
-    getFetchedMemberById = (member) => {
-        this.setState({
-            member: member
-        })
-    };
 
     /**
      * Updates state member and send PUT request to API (updateMemberById action) with those new values.
@@ -63,7 +69,7 @@ class MemberDetails extends Component {
                 email: this.refs.emailInput.value,
             }
         }), () => {
-            updateMemberById(this.state.memberId, this.state.member);
+            updateMemberById(this.state.member.id, this.state.member);
         });
     };
 
@@ -72,11 +78,6 @@ class MemberDetails extends Component {
 
         return (
             <div>
-                <FetchMemberById
-                    memberId={ this.state.memberId }
-                    fetchedMemberById={ this.getFetchedMemberById }>
-                </FetchMemberById>
-
                 <form>
                     <label>{ T.translate('members.team') }</label>
                     <input type="text" ref='teamInput' />
@@ -86,7 +87,6 @@ class MemberDetails extends Component {
                     <input type="text" ref='emailInput' />
                     <button onClick={ this.submitUpdates }>{ T.translate('submit') }</button>
                 </form>
-
             </div>
         )
     }

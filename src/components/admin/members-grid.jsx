@@ -7,7 +7,7 @@ import visibility from '../../images/visibility.svg';
 import bin from '../../images/bin.svg';
 
 /**
- * Presentational component
+ * Presentational component of members.
  */
 class MembersGrid extends Component {
     render() {

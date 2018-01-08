@@ -4,7 +4,11 @@ import Admin from './admin/admin';
 import NewMemberForm from "./admin/new-member-form";
 import MemberDetails from "./admin/member-details";
 
-
+/**
+ * Handles all routes.
+ * @returns {*}
+ * @constructor
+ */
 const Main = () => (
     <main className='main'>
         <Switch>
