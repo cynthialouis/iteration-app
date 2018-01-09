@@ -59,3 +59,28 @@ export function updateMemberById(id, updatedMember) {
             console.log(err);
         })
 }
+
+/**
+ * Ajax request with fetch library
+ * Deletes a member by its id.
+ * @param id
+ * @returns {Promise<Response>}
+ */
+export function deleteMemberById(id) {
+    return fetch(`http://127.0.0.1:8000/api/member/${id}`, {
+        method: 'DELETE',
+        mode: 'CORS',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(res => {
+            return res.json();
+        })
+        .then(data => {
+            console.log(JSON.parse(data));
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}

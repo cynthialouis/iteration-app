@@ -5,11 +5,22 @@ import '../variables';
 import T from 'i18n-react';
 import visibility from '../../images/visibility.svg';
 import bin from '../../images/bin.svg';
+import { deleteMemberById } from '../api-actions/members';
 
 /**
  * Presentational component of members.
  */
 class MembersGrid extends Component {
+
+    /**
+     * Sends DELETE request to the iteration-api.
+     * @param member
+     */
+     deleteHandler = (member) => {
+         deleteMemberById(member.id);
+    };
+
+
     render() {
 
         // Create new row in table for each member (from props).
@@ -22,9 +33,9 @@ class MembersGrid extends Component {
                     <Link to={ `/member/${ member.id }` }>
                         <img src={ visibility } alt='details' />
                     </Link>
-                    <Link to='/'>
+                    <button onClick={ () => this.deleteHandler(member) } >
                         <img src={ bin } alt='remove' />
-                    </Link>
+                    </button>
                 </td>
             </tr>
         );

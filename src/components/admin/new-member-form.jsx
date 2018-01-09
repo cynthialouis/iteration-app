@@ -44,6 +44,13 @@ class NewMemberForm extends Component {
         // Necessary to avoid the page to refresh.
         e.preventDefault();
 
+        // Create member from inputs value.
+        const newMember = {
+          //  team: this.refs.team.value,
+            name: this.refs.name.value,
+            email: this.refs.email.value,
+        };
+
         /**
          * Ajax request with fetch library
          * to post one member to our iteration-api
@@ -55,11 +62,7 @@ class NewMemberForm extends Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                team: this.refs.team.value,
-                name: this.refs.name.value,
-                email: this.refs.email.value,
-            })
+            body: JSON.stringify(newMember)
         })
         .then(res => {
             return res.json();
