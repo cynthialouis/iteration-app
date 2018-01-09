@@ -6,11 +6,10 @@ import NewMemberForm from "./admin/members/new-member-form";
 import MemberDetails from "./admin/members/member-details";
 import NewProjectForm from "./admin/projects/new-project-form";
 import ProjectDetails from "./admin/projects/project-details";
+import SprintDetails from "./sprints/sprint/sprint-details";
 
 /**
  * Handles all routes.
- * @returns {*}
- * @constructor
  */
 const Main = () => (
     <main className='main'>
@@ -21,6 +20,7 @@ const Main = () => (
             <Route path='/member/:memberId' component={ MemberDetails } />
             <Route path='/newproject' component={ NewProjectForm } />
             <Route path='/project/:projectId' component={ ProjectDetails } />
+            <Route path='/sprint/:sprintId' component={ SprintDetails } />
         </Switch>
     </main>
 );
