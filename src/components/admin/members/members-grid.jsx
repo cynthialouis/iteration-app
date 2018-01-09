@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
-import '../variables';
+import '../../variables';
 import T from 'i18n-react';
-import visibility from '../../images/visibility.svg';
-import bin from '../../images/bin.svg';
-import { deleteMemberById } from '../api-actions/members';
+import visibility from '../../../images/visibility.svg';
+import bin from '../../../images/bin.svg';
+import { deleteMemberById } from '../../api-actions/members';
 
 /**
  * Presentational component of members.

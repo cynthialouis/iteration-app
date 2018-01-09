@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../variables';
+import '../../variables';
 import T from 'i18n-react';
-import { fetchMemberById, updateMemberById } from '../api-actions/members';
+import { fetchMemberById, updateMemberById } from '../../api-actions/members';
 
 /**
  * Component to edit a member.

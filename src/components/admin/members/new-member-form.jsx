@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../variables';
+import '../../variables';
 import T from 'i18n-react';
-import { fetchAllTeams } from '../api-actions/teams';
+import { fetchAllTeams } from '../../api-actions/teams';
 
 /**
  * Component to add a new member to API.

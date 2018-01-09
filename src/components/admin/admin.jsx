@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import MembersGrid from './members-grid';
+import MembersGrid from './members/members-grid';
+import ProjectsGrid from './projects/projects-grid';
 import { fetchAllMembers } from '../api-actions/members';
+import { fetchAllProjects } from '../api-actions/projects';
 
 /**
  * Component to display all members (TODO : and all projects).
@@ -11,6 +13,7 @@ class Admin extends Component {
         super();
         this.state = {
             members: [],
+            projects: [],
         };
     }
 
@@ -31,6 +34,20 @@ class Admin extends Component {
             .catch((err) => {
                 console.error('err', err);
             });
+
+        /**
+         * Fetches all projects from our iteration-api and save them as state
+         * in order to pass them to the ProjectsGrid component.
+         */
+        fetchAllProjects()
+            .then((data) => {
+                this.setState({
+                    projects: data
+                })
+            })
+            .catch((err) => {
+                console.error('err', err);
+            });
     }
 
 
@@ -39,6 +56,7 @@ class Admin extends Component {
         return (
             <div>
                 <MembersGrid allMembers={ this.state.members } />
+                <ProjectsGrid allProjects={ this.state.projects } />
             </div>
         );
     }

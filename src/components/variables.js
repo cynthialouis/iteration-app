@@ -15,5 +15,11 @@ T.setTexts({
         team: 'Team',
         name: 'Name',
         email: 'Email',
+    },
+    projects: {
+        add: 'Add new project',
+        title: 'Projects',
+        business: 'Business',
+        name: 'Name',
     }
 });
