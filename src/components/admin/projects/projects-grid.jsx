@@ -42,7 +42,7 @@ class ProjectsGrid extends Component {
 
         return (
             <div>
-                <h3>{ T.translate('project.title') }</h3>
+                <h3>{ T.translate('projects.title') }</h3>
                 <Link to='/newproject'><span>{ T.translate('projects.add') }</span></Link>
 
                 <Table>

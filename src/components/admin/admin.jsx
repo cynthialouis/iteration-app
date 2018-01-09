@@ -5,7 +5,7 @@ import { fetchAllMembers } from '../api-actions/members';
 import { fetchAllProjects } from '../api-actions/projects';
 
 /**
- * Component to display all members (TODO : and all projects).
+ * Component to display all members and all projects.
  */
 class Admin extends Component {
 

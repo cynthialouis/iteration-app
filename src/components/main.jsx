@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Home from './home/home';
 import Admin from './admin/admin';
 import NewMemberForm from "./admin/members/new-member-form";
 import MemberDetails from "./admin/members/member-details";
@@ -14,7 +15,7 @@ import ProjectDetails from "./admin/projects/project-details";
 const Main = () => (
     <main className='main'>
         <Switch>
-            <Route exact path='/' />
+            <Route exact path='/' component={ Home } />
             <Route path='/admin' component={ Admin } />
             <Route path='/newmember' component={ NewMemberForm } />
             <Route path='/member/:memberId' component={ MemberDetails } />

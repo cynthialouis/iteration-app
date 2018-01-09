@@ -21,5 +21,10 @@ T.setTexts({
         title: 'Projects',
         business: 'Business',
         name: 'Name',
+    },
+    sprints: {
+        title: 'Sprints',
+        start: 'Start date',
+        end: 'End date',
     }
 });
