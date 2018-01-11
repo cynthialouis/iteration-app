@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../variables';
 import T from 'i18n-react';
 import { fetchMemberById, updateMemberById } from '../../api-actions/members';
+import {fetchAllTeams} from "../../api-actions/teams";
 
 /**
  * Component to edit a member.
@@ -12,6 +13,7 @@ class MemberDetails extends Component {
         super();
         this.state = {
             member: {},
+            teams: [],
         };
 
         // To check if inputs initial values have already be set.
@@ -32,6 +34,19 @@ class MemberDetails extends Component {
             .then((data) => {
                 this.setState({
                     member: data
+                })
+            })
+            .catch((err) => {
+                console.error('err', err);
+            });
+
+        /**
+         * Fetches all teams from our iteration-api and save them as state to reuse.
+         */
+        fetchAllTeams()
+            .then((data) => {
+                this.setState({
+                    teams: data
                 })
             })
             .catch((err) => {
@@ -76,11 +91,19 @@ class MemberDetails extends Component {
 
     render() {
 
+        // Create a new select option for each team.
+        const TeamOption = this.state.teams.map(team =>
+            <option value={ team.name } key={ team.id }>{ team.name }</option>
+        );
+
         return (
             <div>
                 <form>
                     <label>{ T.translate('members.team') }</label>
-                    <input type="text" ref='teamInput' />
+                    <select ref='teamInput' >
+                        <option>{ this.state.member.team ? this.state.member.team.name : '' }</option>
+                        { TeamOption }
+                    </select>
                     <label>{ T.translate('members.name') }</label>
                     <input type="text" ref='nameInput' />
                     <label>{ T.translate('members.email') }</label>
